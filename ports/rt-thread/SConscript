@@ -1,0 +1,19 @@
+import os
+from building import *
+
+cwd = GetCurrentDir()
+with open(os.path.join(cwd, 'ui', 'filelist.txt')) as manifest:
+    ui_sources = [os.path.join('ui', line.strip()) for line in manifest if line.strip()]
+
+lvgl = os.path.join(cwd, 'lvgl')
+rt_port = os.path.join('lvgl', 'env_support', 'rt-thread')
+lv_sources = [os.path.join(rt_port, 'lv_rt_thread_port.c')]
+for path, dirs, files in os.walk(os.path.join(lvgl, 'src')):
+    relative = os.path.relpath(path, cwd)
+    lv_sources.extend(os.path.join(relative, name) for name in files if name.endswith('.c'))
+
+group = DefineGroup('Dashboard', ['main.c', 'dashboard.c', 'lv_port_indev.c'] + ui_sources,
+                    depend=['PKG_USING_LVGL'],
+                    CPPPATH=[cwd, lvgl, os.path.join(cwd, rt_port)])
+group += DefineGroup('LVGL', sorted(lv_sources), depend=['PKG_USING_LVGL'])
+Return('group')
