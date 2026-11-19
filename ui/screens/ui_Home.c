@@ -1722,7 +1722,6 @@ void ui_Home_screen_init(void)
     lv_obj_set_style_bg_opa(ui_Group_Map, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Map_Bg = lv_img_create(ui_Group_Map);
-    lv_img_set_src(ui_Map_Bg, &ui_img_map_png);
     lv_obj_set_height(ui_Map_Bg, 1118);
     lv_obj_set_width(ui_Map_Bg, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_align(ui_Map_Bg, LV_ALIGN_BOTTOM_MID);

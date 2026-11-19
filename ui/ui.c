@@ -324,8 +324,6 @@ void ui_event____initial_actions0(lv_event_t * e)
         Particle3_Animation(ui_Image_Particle3, 0);
         Particle2_Animation(ui_Image_Particle2, 0);
         Particle1_Animation(ui_Image_Particle1, 0);
-        Knob_Animation(ui_Gps_Knob_Bg, 0);
-        Map_Animation(ui_Map_Bg, 0);
     }
 }
 

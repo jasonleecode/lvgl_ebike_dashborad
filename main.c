@@ -2,7 +2,7 @@
 #include "lvgl/demos/lv_demos.h"
 #include "lv_drivers/sdl/sdl.h"
 #include "lvgl/src/misc/lv_mem.h"
-#include "ui.h"
+#include "app/application.h"
 #include <SDL2/SDL.h>
 
 #include <stdio.h>
@@ -87,14 +87,14 @@ int main(void)
     /* Initialize LVGL. */
     lv_init();
     hal_init();       // 初始化显示和输入设备（SDL）
-    ui_init();        // SquareLine 生成的 UI 初始化函数
+    dashboard_start();
 
-    while (1) {   
-        lv_tick_inc(5);  // 模拟 5ms 间隔
-        lv_task_handler();
-        lv_timer_handler();  // LVGL 事件循环
-        SDL_Delay(5);        // 避免 CPU 占用过高
+    uint32_t previous = SDL_GetTicks();
+    while (1) {
+        uint32_t now = SDL_GetTicks();
+        lv_tick_inc(now - previous);
+        previous = now;
+        lv_timer_handler();
+        SDL_Delay(5);
     }
-
-    return 0;
 }

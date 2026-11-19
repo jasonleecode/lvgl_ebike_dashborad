@@ -1,6 +1,6 @@
 #include <rtdevice.h>
 #include "lvgl.h"
-#include "ui/ui.h"
+#include "app/application.h"
 
 static struct rt_device_graphic_info lcd_info;
 static lv_color_t pixels[BSP_LCD_WIDTH * 16];
@@ -52,7 +52,7 @@ void lv_port_disp_init(void)
 void lv_user_gui_init(void)
 {
     if (lv_disp_get_default()) {
-        ui_init();
+        dashboard_start();
         rt_kprintf("E-bike dashboard ready (%dx%d)\n", lcd_info.width, lcd_info.height);
     }
 }

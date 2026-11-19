@@ -26,7 +26,6 @@ images/ui_img_pin_line_png.c
 images/ui_img_pin_on_png.c
 images/ui_img_icn_x_png.c
 images/ui_img_icn_ok_png.c
-images/ui_img_map_png.c
 images/ui_img_gps_knob_png.c
 images/ui_img_gps_bg_png.c
 images/ui_img_right_png.c

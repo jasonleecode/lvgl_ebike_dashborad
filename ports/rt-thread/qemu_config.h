@@ -1,5 +1,7 @@
 /* Add the console, LCD and mouse used by the dashboard to the BSP defaults. */
 #define BSP_USING_UART0
+#define BSP_USING_UART1
+#define RT_USING_SENSOR
 #define BSP_DRV_CLCD
 #define BSP_LCD_WIDTH 480
 #define BSP_LCD_HEIGHT 272

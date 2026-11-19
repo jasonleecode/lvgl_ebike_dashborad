@@ -12,8 +12,10 @@ for path, dirs, files in os.walk(os.path.join(lvgl, 'src')):
     relative = os.path.relpath(path, cwd)
     lv_sources.extend(os.path.join(relative, name) for name in files if name.endswith('.c'))
 
-group = DefineGroup('Dashboard', ['main.c', 'dashboard.c', 'lv_port_indev.c'] + ui_sources,
+port_sources = ['main.c', 'dashboard.c', 'platform_rtthread.c', 'lv_port_indev.c']
+app_sources = ['app/application.c', 'app/map_view.c', 'app/mapengine/mapengine.c', 'app/mapengine/map_layers.c', 'app/mapengine/road_view.c', 'app/mapengine/map_store.c', 'app/telemetry.c']
+group = DefineGroup('Dashboard', port_sources + app_sources + ui_sources,
                     depend=['PKG_USING_LVGL'],
-                    CPPPATH=[cwd, lvgl, os.path.join(cwd, rt_port)])
+                    CPPPATH=[cwd, lvgl, os.path.join(cwd, rt_port)], LIBS=['m'])
 group += DefineGroup('LVGL', sorted(lv_sources), depend=['PKG_USING_LVGL'])
 Return('group')
